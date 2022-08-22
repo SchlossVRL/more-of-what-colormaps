@@ -1,0 +1,112 @@
+﻿* Encoding: UTF-8.
+
+*------------------------------------------------------------
+*Averaged over colorscale & legend orientation
+*FILES: 
+*    Exp1_SPSS_outNoCSLeg-dMoreQuant.csv
+*    Exp2_SPSS_outNoCSLeg-dMoreQuant.csv
+*    Exp3_SPSS_outNoCSLeg-dMoreQuant.csv
+*    Exp4_SPSS_outNoCSLeg-dMoreQuant.csv
+*    Exp5_SPSS_outNoCSLeg-dMoreQuant.csv
+*------------------------------------------------------------
+
+*mixed design ANOVA: 2 conditions (congruent vs. incongruent) x 2 encoded mappings (dark-more quantity vs. light-more quantity).
+GLM Dm Lm BY Condition
+  /WSFACTOR=EncodedMapping 2 Polynomial
+  /METHOD=SSTYPE(3)
+  /PRINT=DESCRIPTIVE ETASQ PARAMETER
+  /CRITERIA=ALPHA(.05)
+  /WSDESIGN=EncodedMapping
+  /DESIGN=Condition.
+
+
+
+*------------------------------------------------------------
+*Averaged over legend
+*FILES: 
+*    Exp1_SPSS_outNoLeg-dMoreQuant.csv
+*    Exp2_SPSS_outNoLeg-dMoreQuant.csv
+*    Exp3_SPSS_outNoLeg-dMoreQuant.csv
+*    Exp4_SPSS_outNoLeg-dMoreQuant.csv
+*    Exp5_SPSS_outNoLeg-dMoreQuant.csv
+*------------------------------------------------------------
+
+
+*mixed design ANOVA: 2 conditions (congruent vs. incongruent) x 2 encoded mappings (dark-more quantity vs. light-more quantity) x 2 color scales (Hot vs. Blue).
+
+
+
+
+
+*------------------------------------------------------------
+*Full datasets - Supplementary materials
+*FILES: 
+*    Exp1_SPSS_outAll-dMoreQuant.csv
+*    Exp2_SPSS_outAll-dMoreQuant.csv
+*    Exp3_SPSS_outAll-dMoreQuant.csv
+*    Exp4_SPSS_outAll-dMoreQuant.csv
+*    Exp5_SPSS_outAll-dMoreQuant.csv
+*------------------------------------------------------------
+
+*mixed design ANOVA: 2 conditions (congruent vs. incongruent) x 2 encoded mappings (dark-more quantity vs. light-more quantity) x 2 color scales (Hot vs. Blue) x 2 legend orientation (target high vs. target low).
+GLM Blue_tHi_Dm Blue_tHi_Lm Blue_tLo_Dm Blue_tLo_Lm Hot_tHi_Dm Hot_tHi_Lm Hot_tLo_Dm Hot_tLo_Lm BY
+    Condition
+  /WSFACTOR=ColorScale 2 Polynomial LegendOrientation 2 Polynomial EncodedMapping 2 Polynomial
+  /METHOD=SSTYPE(3)
+  /PRINT=DESCRIPTIVE ETASQ PARAMETER
+  /CRITERIA=ALPHA(.05)
+  /WSDESIGN=ColorScale LegendOrientation EncodedMapping ColorScale*LegendOrientation
+    ColorScale*EncodedMapping LegendOrientation*EncodedMapping
+    ColorScale*LegendOrientation*EncodedMapping
+  /DESIGN=Condition.
+
+
+
+
+
+
+
+
+
+* independent samples t-test for PC and VR lessons (testing change in performance against zero). 
+T-TEST
+  /TESTVAL=0
+  /MISSING=ANALYSIS
+  /VARIABLES=PCLesson VRLesson
+  /CRITERIA=CI(.95).
+
+
+* paired samples t-test comparing PC and VR lessons.
+T-TEST PAIRS=PCLesson WITH VRLesson (PAIRED)
+  /CRITERIA=CI(.9500)
+  /MISSING=ANALYSIS.
+
+
+*mixed design ANOVA: 2 devices (PC vs VR; within-subjects) x 2 percceptual systems in VR (visual vs. auditory; between-subjects) x 2 device orders (PC-first vs. VR-first; between-subjects).
+GLM PCLesson VRLesson BY DeviceOrderC SystemDeviceC
+  /WSFACTOR=Device 2 Polynomial
+  /METHOD=SSTYPE(3)
+  /PRINT=DESCRIPTIVE ETASQ OPOWER PARAMATER
+  /CRITERIA=ALPHA(.05)
+  /WSDESIGN=Device
+  /DESIGN=DeviceOrderC SystemDeviceC DeviceOrderC*SystemDeviceC.
+
+
+*Exp1b only: *paired samples t-test comparing visual and auditory lessons.
+T-TEST PAIRS=VisualLesson WITH AuditoryLesson (PAIRED)
+  /CRITERIA=CI(.9500)
+  /MISSING=ANALYSIS.
+
+
+*STEM-All.csv only: mixed design ANOVA comparing across Exp 1. and Exp 2: 2 lesson devices (PC vs. VR; within subjects) x 2 testing devices (Paper vs. Looking Glass; between subjects). 
+
+GLM PCLesson VRLesson BY TestingMethod
+  /WSFACTOR=LessonDevice 2 Polynomial
+  /METHOD=SSTYPE(3)
+  /PRINT=DESCRIPTIVE ETASQ
+  /CRITERIA=ALPHA(.05)
+  /WSDESIGN=LessonDevice
+  /DESIGN=TestingMethod.
+
+
+
