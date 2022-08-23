@@ -1,10 +1,7 @@
-% load in data into a .mat file for RT & accuracy
+% load in data & organize into a .mat file for RT & accuracy
 
-%Exp1_ColormapSpace-What.mat 
-
-%Set WD - update to your device
-%cd /Users/melan/Dropbox/Research/Experiments/ColormapWhat/Analyses/RankIndex-Health-labels %Melissa
-cd /Users/alexissoto/Dropbox/ColormapWhat/Analyses/RankIndex-Health-labels %Lexi
+%Set WD to the 1.Organizing-R folder
+%cd /SchlossVRL/1.Organizing-R/Exp5-RankIndex-Health-Labels
 
 %Update the number of subjects 
 RankSubj = [1:30]; 
@@ -12,6 +9,7 @@ IndexSubj = [1:30];
 
 
 %% Rank condition
+
 %Read in the RT data
 n = length(RankSubj);
 LoadRTRank = zeros(16,20,n);  %16 conditiion rows, 20 columns of data
@@ -34,6 +32,7 @@ end
 
 
 %% Index condition
+
 %Read in the RT data
 n = length(IndexSubj);
 LoadRTIndex = zeros(16,20,n);  %16 conditiion rows, 20 columns of data
@@ -55,19 +54,18 @@ end
 
 %% Create .mat file 
 
-%cd /Users/melan/Dropbox/Research/Experiments/ColormapWhat/Analyses/AnalyzingExperimentData/OrganzingPloting(Matlab)%Melissa
-cd /Users/alexissoto/Dropbox/ColormapWhat/Analyses/AnalyzingExperimentData/OrganzingPloting(Matlab)%Lexi
+%Change wd to the 2.Plotting-Matlab folder
+%cd /SchlossVRL/2.Plotting-Matlab
 
 %create structure for accuacy and RT data
-Rank.LoadAcc = LoadAccRank
-Rank.LoadRT = LoadRTRank
-
+Rank.LoadAcc = LoadAccRank;
+Rank.LoadRT = LoadRTRank;
 
 %create structure for accuacy and RT data
-Index.LoadAcc = LoadAccIndex
-Index.LoadRT = LoadRTIndex
+Index.LoadAcc = LoadAccIndex;
+Index.LoadRT = LoadRTIndex;
 
-Exp5.Index = Index
-Exp5.Rank = Rank
+Exp5.Index = Index;
+Exp5.Rank = Rank;
 
 %Save Exp5 as .mat file into this folder

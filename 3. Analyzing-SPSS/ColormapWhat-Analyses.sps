@@ -1,12 +1,15 @@
 ﻿* Encoding: UTF-8.
 
+* More of what: dissociating effects of conceptual and numeric mappings on interpreting colormap data visualizations
+*Alexis Soto, Melissa A. Schoenlein, Karen B. Schloss
+
 *------------------------------------------------------------
 *FILES: 
-*    Exp1_SPSS_FasterLonger_Aliens_Labels.csv
-*    Exp2_SPSS_SlowerShorter_Aliens_Labels.csv
-*    Exp3_SPSS_FasterLonger_Aliens_NoLabels.csv
-*    Exp4_SPSS_FasterLonger_Soil_Labels.csv
-*    Exp5_SPSS_RankIndex_Health_Labels.csv
+*    Exp1_SPSS_outAll.csv
+*    Exp2_SPSS_outAll.csv
+*    Exp3_SPSS_outAll.csv
+*    Exp4_SPSS_outAll.csv
+*    Exp5_SPSS_outAll.csv
 *------------------------------------------------------------
 
 

@@ -1,21 +1,5 @@
 function [ColormapOut, ColormapOut4] = PlotColormaps_MAS_CongXMappingXLegendXScale( Data1, Data2, Data3, Data4, Data5, Condition1,Condition2,Condition3, S1name, S2name, figNum, yminimum, ymaximum )
 
-%  Data1 = Faster1.AvgRTsubj; 
-%   Data2 = Slower.AvgRTsubj; 
-%   Data3 = FasterNoLab.AvgRTsubj; 
-%   Data4 = FasterSoil.AvgRTsubj; 
-%   Data5 = Rank.AvgRTsubj;
-% 
-% Condition1 = ' Faster';
-% Condition2 = ' Slower'; 
-% Condition3 = ' Rank'; 
-% S1name = 'Blue';
-% S2name = 'Hot';
-% figNum = 3333;
-% yminimum = 1000;
-% ymaximum = 1700;
-
-
 % Data has the following structure:
 %within the 32 rows, 1-16 is color scale 1, 17-32 is color scale 2. 
 %within each color scale, 1-8 is dark hotspot, 9-16 is light hotspot 
@@ -24,39 +8,28 @@ function [ColormapOut, ColormapOut4] = PlotColormaps_MAS_CongXMappingXLegendXSca
 %within each scale orientation, 1 is greater high, 2 is greater low.    
 %columns are subjects (data has already been aggregated across images)
 
-%COLORMAP WHAT
-% within the 16 rows, 1-8 is 'blue', 9-16 is 'hot' color scale. 
-    % within each color scale, 1-4 is dark on the left, 5-8 is dark on the right.
-    % within each lighntess side, 1-2 the scale is oriented so dark high, 3-4 is dark low 
-    % within each scale orientation, 1 is target high, 2 is target low.    
-% columns are subjects (data has already been aggregated across images)
-%Data =  Grid.AvgRTsubj_GC
 
 for exp = 1:5  
     if (exp == 1)
-        Data1 = Data1 %because faster condition has 31 participants, separate from the other 3  (Data1 vs Data)
-        Condition = Condition1
+        Data1 = Data1; %because faster condition has 31 participants, separate from the other 3  (Data1 vs Data)
+        Condition = Condition1;
     elseif (exp == 2)
-        Data = Data2
-        Condition = Condition2 %slower/shorter
+        Data = Data2;
+        Condition = Condition2; %slower/shorter
     elseif (exp == 3)
-        Data = Data3
-        Condition = Condition1
+        Data = Data3;
+        Condition = Condition1;
     elseif (exp == 4)
-        Data = Data4
-        Condition = Condition1
+        Data = Data4;
+        Condition = Condition1;
     elseif (exp == 5)
-        Data = Data5
-        Condition = Condition3 %rank/index
+        Data = Data5;
+        Condition = Condition3; %rank/index
     end
     
- %reorder data dark more concept / more concept hi
-%     if (Condition == " Shorter" || Condition == " Slower")
-%        Ord = [2 4 3 1];%[3 1 2 4]; %1 & 4 are L+ quantity and 3 & 2 are D+ quantity
-%             %Ord = [3 1 2 4]; %1 & 4 are L+ quantity and 3 & 2 are D+ quantity
-%     else
+        %Set order
          Ord = [1 3 4 2];
-%     end   
+
 
     
  %used for x axis labels
@@ -88,9 +61,6 @@ for exp = 1:5
 
         S1Avg1 = mean(S1Ord1,2);
         S2Avg1 = mean(S2Ord1,2);
-
-        %Average S1 & S2 so only have D+ and L+ 
-        %SBothAll1 = (S1Ord1 + S2Ord1)/2; 
 
         %Output for comparing without legend text
         ColormapOut4 = ColormapOut1;
@@ -136,7 +106,6 @@ for exp = 1:5
         
     %for experiments 2-5
     elseif exp ~= 1
-
         n = size(Data,2);
 
         %separate color scales
@@ -153,9 +122,6 @@ for exp = 1:5
         ColormapOut = [S1Ord',S2Ord'];
         S1Avg = mean(S1Ord,2);
         S2Avg = mean(S2Ord,2);
-
-        %Average S1 & S2 so only have D+ and L+ 
-       % SBothAll = (S1Ord + S2Ord)/2; 
 
         %Output for comparing without legend text
         ColormapOut4 = ColormapOut;
@@ -174,8 +140,6 @@ for exp = 1:5
         SBothAll_SEMScale1 = std(SBothAllAvgValsScale1')./sqrt(n); %error bars for both averaged color scales
         SBothAllAvgValsScale2 = SBothAllAvgScale2 - SubjMean + GrandMean;
         SBothAll_SEMScale2 = std(SBothAllAvgValsScale2')./sqrt(n); %error bars for both averaged color scales
-
-        
         
      %dark more of the concept- used for ordering bars
     if (Condition == " Slower" || Condition == " Shorter")

@@ -1,27 +1,5 @@
-function [ColormapOut, ColormapOut4] = PlotColormaps_MAS_CongrXMapping( Data1a, Data1b, Data2a, Data2b, Data3a, Data3b, Data4a, Data4b, Data5a, Data5b, Condition1,Condition2,Condition3, S1name, S2name, figNum, yminimum, ymaximum )
-
-% Data1a = Faster1.AvgRTsubj; 
-% Data1b = Longer1.AvgRTsubj; 
-% Data2a = Slower.AvgRTsubj;
-% Data2b = Shorter.AvgRTsubj;
-% Data3a = FasterNoLab.AvgRTsubj;
-% Data3b = LongerNoLab.AvgRTsubj; 
-% Data4a = FasterSoil.AvgRTsubj;
-% Data4b = LongerSoil.AvgRTsubj; 
-% Data5a = Rank.AvgRTsubj;  
-% Data5b = Index.AvgRTsubj;
+function [ColormapOut, ColormapOut4] = PlotColormaps_MAS_CongXLegend( Data1a, Data1b, Data2a, Data2b, Data3a, Data3b, Data4a, Data4b, Data5a, Data5b, Condition1,Condition2,Condition3, S1name, S2name, figNum, yminimum, ymaximum )
 % 
-% Condition1 = ' Faster';
-% Condition2 = ' Slower'; 
-% Condition3 = ' Rank'; 
-% % % 
-% S1name = 'Blue';
-% S2name = 'Hot';
-% figNum = 1100;
-% yminimum = 1000;
-% ymaximum = 1600;
-
-
 % Data has the following structure:
 %within the 32 rows, 1-16 is color scale 1, 17-32 is color scale 2. 
 %within each color scale, 1-8 is dark hotspot, 9-16 is light hotspot 
@@ -30,13 +8,6 @@ function [ColormapOut, ColormapOut4] = PlotColormaps_MAS_CongrXMapping( Data1a, 
 %within each scale orientation, 1 is greater high, 2 is greater low.    
 %columns are subjects (data has already been aggregated across images)
 
-%COLORMAP WHAT
-% within the 16 rows, 1-8 is 'blue', 9-16 is 'hot' color scale. 
-    % within each color scale, 1-4 is dark on the left, 5-8 is dark on the right.
-    % within each lighntess side, 1-2 the scale is oriented so dark high, 3-4 is dark low 
-    % within each scale orientation, 1 is target high, 2 is target low.    
-% columns are subjects (data has already been aggregated across images)
-%Data =  Grid.AvgRTsubj_GC
 
 for exp = 1:5  
     if (exp == 1)
@@ -67,9 +38,9 @@ for exp = 1:5
     
  %used for x axis labels
     if (Condition == " Faster" || Condition == " Slower" || Condition == " Rank")%- dark more concept
-        Cond = Condition; %{'More C-Hi\newlineMore #-Lo';'More C-Lo\newlineMore #-Hi';};
+        Cond = Condition; 
     else
-        Cond = Condition3; %{'More C-Hi\newlineMore #-Hi'; 'More C-Lo\newlineMore #-Lo';};
+        Cond = Condition3;
     end
 
   
@@ -77,8 +48,6 @@ for exp = 1:5
     if exp == 1
         n = size(Data1a,2);
 
-        CondCongruent = " Longer" ; 
-        CondIncongruent = " Faster"; 
         %separate color scales
         S1Data1a = Data1a(1:8,:); %Blue colorscale
         S2Data1a = Data1a(9:16,:); %Hot colorscale
@@ -96,20 +65,20 @@ for exp = 1:5
         S1Avg1a = mean(S1Ord1a,2);
         S2Avg1a = mean(S2Ord1a,2);
 
-        %Average S1 & S2 so only have D+ and L+ 
-        S1All1a(1:2,:) =  (S1Ord1a(1:2,:) + S1Ord1a(3:4,:))/2; 
+        %Average S1 & S2 so only have concept Hi and concept Lo      
+        S1All1a(1:2,:)= (S1Ord1a([1,3],:) +(S1Ord1a([2,4],:)))/2; 
         S1AllAvg1a = mean(S1All1a,2)
 
-        S2All1a(1:2,:) =  (S2Ord1a(1:2,:) + S2Ord1a(3:4,:))/2; 
+        S2All1a(1:2,:) =  (S2Ord1a([1,3],:) + S2Ord1a([2,4],:))/2; 
         S2AllAvg1a = mean(S2All1a,2)
-        
+               
         SBothAllFull1a = [S1All1a, S2All1a]
         SBothAllAvg1a = [S1All1a; S2All1a]
-        SBothAllAvgS1a = [mean(SBothAllAvg1a([1,3],:));  mean(SBothAllAvg1a([2,4],:))]
+        SBothAllAvgS1a = [mean(SBothAllAvg1a([1,2],:));  mean(SBothAllAvg1a([3,4],:))]
         SBothAllAvg1a = mean(SBothAllFull1a, 2)
             
        
-        %Output for comparing without legend text
+        %Output for comparing without encoded mapping
         ColormapOut4a = [SBothAllFull1a'];
 
         
@@ -122,10 +91,8 @@ for exp = 1:5
         %error bars for data averaged over just colorscale
         SBothAllAvgVals1a = SBothAllAvgS1a - SubjMean1a + GrandMean1a;
         SBothAll_SEM1a = std(SBothAllAvgVals1a')./sqrt(n); %error bars for both averaged color scales
+        Ord2 = [1 2];
 
-         Ord2 = [1 2];
-
-                
         % Plot data averaged over just color scale (not leg orientation) (Output4)
         SBothAllPrep1a = reshape(SBothAllAvg1a,1,2)';
         SBothAll_SEMPrep1a = reshape(SBothAll_SEM1a,1,2)';
@@ -152,22 +119,20 @@ for exp = 1:5
         S1Avg1b = mean(S1Ord1b,2);
         S2Avg1b = mean(S2Ord1b,2);
 
-        %Average S1 & S2 so only have D+ and L+ 
-        S1All1b(1:2,:) =  (S1Ord1b(1:2,:) + S1Ord1b(3:4,:))/2; 
+        %Average S1 & S2 so only have Hi and Lo
+        S1All1b(1:2,:)= (S1Ord1b([1,3],:) +(S1Ord1b([2,4],:)))/2; 
         S1AllAvg1b = mean(S1All1b,2)
 
-        S2All1b(1:2,:) =  (S2Ord1b(1:2,:) + S2Ord1b(3:4,:))/2; 
+        S2All1b(1:2,:) =  (S2Ord1b([1,3],:) + S2Ord1b([2,4],:))/2; 
         S2AllAvg1b = mean(S2All1b,2)
-        
+               
         SBothAllFull1b = [S1All1b, S2All1b]
         SBothAllAvg1b = [S1All1b; S2All1b]
-        SBothAllAvgS1b = [mean(SBothAllAvg1b([1,3],:));  mean(SBothAllAvg1b([2,4],:))]
-               
+        SBothAllAvgS1b = [mean(SBothAllAvg1b([1,2],:));  mean(SBothAllAvg1b([3,4],:))]
         SBothAllAvg1b = mean(SBothAllFull1b, 2)
         
         %Output for comparing without legend text
         ColormapOut4b = [SBothAllFull1b'];
-
 
 
         % CALCULATING ERROR (from Cousineau (2005))
@@ -179,7 +144,6 @@ for exp = 1:5
         %error bars for data averaged over just colorscale
         SBothAllAvgVals1b = SBothAllAvgS1b - SubjMean1b + GrandMean1b;
         SBothAll_SEM1b = std(SBothAllAvgVals1b')./sqrt(n); %error bars for both averaged color scales
-
          Ord2 = [1 2];
 
         % Plot data averaged over just color scale (not leg orientation) (Output4)
@@ -211,20 +175,18 @@ for exp = 1:5
         S1Avga = mean(S1Orda,2);
         S2Avga = mean(S2Orda,2);
 
-
-        %Average S1 & S2 so only have D+ and L+ 
-        S1Alla(1:2,:) =  (S1Orda(1:2,:) + S1Orda(3:4,:))/2; 
+        %Average S1 & S2 so only have hi and lo 
+        S1Alla(1:2,:)= (S1Orda([1,3],:) +(S1Orda([2,4],:)))/2; 
         S1AllAvga = mean(S1Alla,2)
 
-        S2Alla(1:2,:) =  (S2Orda(1:2,:) + S2Orda(3:4,:))/2; 
+        S2Alla(1:2,:) =  (S2Orda([1,3],:) + S2Orda([2,4],:))/2; 
         S2AllAvga = mean(S2Alla,2)
-        
-        SBothAllFulla = [S1Alla, S2Alla]
+               
         SBothAllFulla = [S1Alla, S2Alla]
         SBothAllAvga = [S1Alla; S2Alla]
-        SBothAllAvgSa = [mean(SBothAllAvga([1,3],:));  mean(SBothAllAvga([2,4],:))]
+        SBothAllAvgSa = [mean(SBothAllAvga([1,2],:));  mean(SBothAllAvga([3,4],:))]
         SBothAllAvga = mean(SBothAllFulla, 2)
-        
+                      
         %Output for comparing without legend text
         ColormapOut4a = [SBothAllFulla'];
 
@@ -237,7 +199,6 @@ for exp = 1:5
         %error bars for data averaged over just colorscale
         SBothAllAvgValsa = SBothAllAvgSa - SubjMeana + GrandMeana;
         SBothAll_SEMa = std(SBothAllAvgValsa')./sqrt(n); %error bars for both averaged color scales
-
              
     
         % Plot data averaged over just color scale (not leg orientation) (Output4)
@@ -283,20 +244,18 @@ for exp = 1:5
         S1Avgb = mean(S1Ordb,2);
         S2Avgb = mean(S2Ordb,2);
 
-        %Average S1 & S2 so only have D+ and L+ 
-        S1Allb(1:2,:) =  (S1Ordb(1:2,:) + S1Ordb(3:4,:))/2; 
-        S1AllAvgb = mean(S1All1b,2)
+        %Average S1 & S2 so only have hi and lo
+        S1Allb(1:2,:)= (S1Ordb([1,3],:) +(S1Ordb([2,4],:)))/2; 
+        S1AllAvgb = mean(S1Allb,2);
 
-        S2Allb(1:2,:) =  (S2Ordb(1:2,:) + S2Ordb(3:4,:))/2; 
-        S2AllAvgb = mean(S2Allb,2)
-        
-        SBothAllFullb = [S1Allb, S2Allb]
-        SBothAllFullb = [S1Allb, S2Allb]
-        SBothAllAvgb = [S1Allb; S2Allb]
-        SBothAllAvgSb = [mean(SBothAllAvgb([1,3],:));  mean(SBothAllAvgb([2,4],:))]
+        S2Allb(1:2,:) =  (S2Ordb([1,3],:) + S2Ordb([2,4],:))/2; 
+        S2AllAvgb = mean(S2Allb,2);
                
-        SBothAllAvgb = mean(SBothAllFullb, 2)
-        
+        SBothAllFullb = [S1Allb, S2Allb];
+        SBothAllAvgb = [S1Allb; S2Allb];
+        SBothAllAvgSb = [mean(SBothAllAvgb([1,2],:));  mean(SBothAllAvgb([3,4],:))];
+        SBothAllAvgb = mean(SBothAllFullb, 2);
+            
         
         %Output for comparing without legend text
         ColormapOut4b = [SBothAllFullb'];
@@ -346,7 +305,8 @@ end
 %% Plot the data
 
 %Set up figure
-leg = {'D+ C', 'L+ C'};
+leg = {'More C-Hi\newlineMore #-Lo';'More C-Lo\newlineMore #-Hi';};
+
 Gray = [.5 .5 .5];
 Disp = [-.15, .15];
 
@@ -387,12 +347,12 @@ subplot(1,5,2)
 hold on
 
 
-SAllPlot2 = [SAllPlot2a, SAllPlot2b]';
-SAll_SEMplot2 = [SAll_SEMplot2a, SAll_SEMplot2b]';
+SAllPlot2 = [flip(SAllPlot2a), flip(SAllPlot2b)]';
+SAll_SEMplot2 = [flip(SAll_SEMplot2a), flip(SAll_SEMplot2b)]';
 b = bar(SAllPlot2, 'FaceColor', 'flat');
 b(1).CData = [0 0 0];
 b(2).CData = [1 1 1];
-Cond = ["Slower", "Shorter"]; 
+Cond = ["Faster", "Longer"]; 
 
      for row = 1:2
         for col = 1:2

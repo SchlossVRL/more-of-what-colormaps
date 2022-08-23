@@ -1,10 +1,7 @@
-% load in data into a .mat file for RT & accuracy
+% load in data & organize into a .mat file for RT & accuracy
 
-%Exp1_ColormapSpace-What.mat 
-
-%Set WD - update to your device
-%cd /Users/melan/Dropbox/Research/Experiments/ColormapWhat/Analyses/FasterLonger-Soil-Labels %Melissa
-cd /Users/alexissoto/Dropbox/ColormapWhat/Analyses/FasterLonger-Soil-Labels %Lexi
+%Set WD to the 1.Organizing-R folder
+%cd /SchlossVRL/1.Organizing-R/Exp4-FasterLonger-Soil-Labels
 
 %Update the number of subjects 
 FasterSubj = [1:30]; 
@@ -12,6 +9,7 @@ LongerSubj = [1:30];
 
 
 %% Faster condition
+
 %Read in the RT data
 n = length(FasterSubj);
 LoadRTFast = zeros(16,20,n);  %16 conditiion rows, 20 columns of data
@@ -34,6 +32,7 @@ end
 
 
 %% Longer condition
+
 %Read in the RT data
 n = length(LongerSubj);
 LoadRTLong = zeros(16,20,n);  %16 conditiion rows, 20 columns of data
@@ -55,19 +54,18 @@ end
 
 %% Create .mat file 
 
-%cd /Users/melan/Dropbox/Research/Experiments/ColormapWhat/Analyses/AnalyzingExperimentData/OrganzingPloting(Matlab)%Melissa
-cd /Users/alexissoto/Dropbox/ColormapWhat/Analyses/AnalyzingExperimentData/OrganzingPloting(Matlab)%Lexi
+%Change wd to the 2.Plotting-Matlab folder
+%cd /SchlossVRL/2.Plotting-Matlab
 
 %create structure for accuacy and RT data
-Faster.LoadAcc = LoadAccFast
-Faster.LoadRT = LoadRTFast
-
+Faster.LoadAcc = LoadAccFast;
+Faster.LoadRT = LoadRTFast;
 
 %create structure for accuacy and RT data
-Longer.LoadAcc = LoadAccLong
-Longer.LoadRT = LoadRTLong
+Longer.LoadAcc = LoadAccLong;
+Longer.LoadRT = LoadRTLong;
 
-Exp4.Longer = Longer
-Exp4.Faster = Faster
+Exp4.Longer = Longer;
+Exp4.Faster = Faster;
 
-%Save Exp1Pilot as .mat file into this folder
+%Save Exp3 as .mat file into this folder

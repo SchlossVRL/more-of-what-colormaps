@@ -2,27 +2,6 @@
 
 _Alexis Soto, Melissa A. Schoenlein, Karen B. Schloss_
 
-Abstract
-
-More to come! 
-
----
-
-## FOLDER: 1. Organizing-R
-
-### Data files
-
-`Exp1.csv`, `Exp2.csv`, `Exp3.csv`, `Exp4.csv`, `Exp5.csv`: store the individual trial data from the colormaps task
-
-
-### Analysis file
-
-`ColormapWhat-dataProcessing.R`: R script for cleaning and organizing raw data. Takes files above as inputs. Creates a csv file for each participant that gets stored in the respective subfolder
-
-### Subfolders
-Each subfolder stores the output of the ColormapWhat-dataProcessing.R code - two files for each participant, one for their accuracy and one for their response times. These files are used as input into the Exp#_LoadInData_MAS.m files. 
-
-
 
 ## FOLDER: 2. Plotting-Matlab
 
@@ -55,18 +34,19 @@ Each subfolder stores the output of the ColormapWhat-dataProcessing.R code - two
 `PlotColormapsRank_MAS.m`: creates some plots, but primarily used for organizing data to create output files used for SPSS (need to uncomment some text in the Exp5_OrganizeColormapSpace_MAS.m files)
 
 
+---
 
-## FOLDER: 3. Analyzing-SPSS
+## Format of the exp#.mat files: 
 
-`Exp1_SPSS_outAll.csv`, `Exp2_SPSS_outAll.csv`, `Exp3_SPSS_outAll.csv`,`Exp4_SPSS_outAll.csv`,`Exp5_SPSS_outAll.csv`: store response time data output from the Exp#_OrganizeColormapSpace_MAS.m files. Used for analyzing data. 
+1x1 struct with 2 fields (congruent, incongruent)
+In each of those fields, there are 2 sub-fields (LoadACC, LoadRT)
 
+LoadACC (16x20x30) & LoadRT (16x20x30):  16 colormap/legend/colorscales X 20 repitions X # of participants
 
-### Analysis file
+    Within the 16 rows, rows 1-8 is 'blue', 9-16 is 'hot' color scale. 
+        Within each color scale, rows 1-4 is dark on the left, 5-8 is dark on the right.
+        Within each lighntess side, rows 1-2 the scale is oreinted so dark high, 3-4 is dark low 
+        Within each scale orientation, row 1 is target high, 2 is target low. 
+    Columns are repitions (with different images)
+    3rd Dimension is participants
 
-`ColormapWhat-Analyses.sps` SPSS script file to run analyses. Uses above csv files as input 
-
-
-
-## FOLDER: Stimuli-colormaps
-
-Stores experiment colormap stimuli and legend colorscale stimuli

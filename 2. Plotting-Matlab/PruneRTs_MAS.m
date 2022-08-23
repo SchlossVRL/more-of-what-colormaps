@@ -1,6 +1,6 @@
 function [AvgRTSubj] = PruneRTs_MAS(RT, Acc)
-% Prune RTs that are +/- 2 SD from subj mean and that are obtained from error trials
 
+% Prune RTs that are +/- 2 SD from subj mean and that are obtained from error trials
 numCond = size(RT,1);
 numRep = size(RT,2);
 n = size(RT,3);
@@ -47,7 +47,6 @@ for i = 1:n
 end
 
 AvgRTSubj = MeanRTboth(1:numCond,:); 
-%AvgRTConcSubj = MeanRTboth(1+numCond:numCond*2, :); 
 
 end
 

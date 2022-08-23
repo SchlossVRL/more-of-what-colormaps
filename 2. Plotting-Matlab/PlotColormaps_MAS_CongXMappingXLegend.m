@@ -1,17 +1,4 @@
-function [ColormapOut, ColormapOut4] = PlotColormaps_MAS_All( Data1, Data2, Data3, Data4, Data5, Condition1,Condition2,Condition3, S1name, S2name, figNum, yminimum, ymaximum )
-
-%  Data1 = Faster1.AvgRTsubj; 
-%   Data2 = Slower.AvgRTsubj; 
-%   Data3 = FasterNoLab.AvgRTsubj; 
-%   Data4 = FasterSoil.AvgRTsubj; 
-%   Data5 = Rank.AvgRTsubj;
-% 
-% Condition = ' Faster';
-% S1name = 'Blue';
-% S2name = 'Hot';
-% figNum = 1;
-% yminimum = 1000;
-% ymaximum = 1600;
+function [ColormapOut, ColormapOut4] = PlotColormaps_MAS_CongXMappingXLegend( Data1, Data2, Data3, Data4, Data5, Condition1,Condition2,Condition3, S1name, S2name, figNum, yminimum, ymaximum )
 
 
 % Data has the following structure:
@@ -22,13 +9,6 @@ function [ColormapOut, ColormapOut4] = PlotColormaps_MAS_All( Data1, Data2, Data
 %within each scale orientation, 1 is greater high, 2 is greater low.    
 %columns are subjects (data has already been aggregated across images)
 
-%COLORMAP WHAT
-% within the 16 rows, 1-8 is 'blue', 9-16 is 'hot' color scale. 
-    % within each color scale, 1-4 is dark on the left, 5-8 is dark on the right.
-    % within each lighntess side, 1-2 the scale is oriented so dark high, 3-4 is dark low 
-    % within each scale orientation, 1 is target high, 2 is target low.    
-% columns are subjects (data has already been aggregated across images)
-%Data =  Grid.AvgRTsubj_GC
 
 for exp = 1:5  
     if (exp == 1)
@@ -48,15 +28,11 @@ for exp = 1:5
         Condition = Condition3 %rank/index
     end
     
- %reorder data dark more concept / more concept hi
-%     if (Condition == " Shorter" || Condition == " Slower")
-%        Ord = [2 4 3 1];%[3 1 2 4]; %1 & 4 are L+ quantity and 3 & 2 are D+ quantity
-%             %Ord = [3 1 2 4]; %1 & 4 are L+ quantity and 3 & 2 are D+ quantity
-%     else
-         Ord = [1 3 4 2];
-%     end   
-
     
+        %Set order
+         Ord = [1 3 4 2];
+  
+
  %used for x axis labels
     if (Condition == " Faster" || Condition == " Slower" || Condition == " Rank")%- dark more concept
         Cond = {'More C-Hi\newlineMore #-Lo';'More C-Lo\newlineMore #-Hi';};
@@ -125,7 +101,6 @@ for exp = 1:5
 
     %for experiments 2-5
     elseif exp ~= 1
-
         n = size(Data,2);
 
         %separate color scales
