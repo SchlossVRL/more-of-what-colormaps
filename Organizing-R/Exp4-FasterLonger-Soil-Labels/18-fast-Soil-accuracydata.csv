@@ -1,0 +1,17 @@
+"subjectID","conditionProtoStr","colorScaleStr","darkSideStr","darkLegendOrientStr","targetOrientStr","correct.0","correct.1","correct.2","correct.3","correct.4","correct.5","correct.6","correct.7","correct.8","correct.9","correct.10","correct.11","correct.12","correct.13","correct.14","correct.15","correct.16","correct.17","correct.18","correct.19"
+15720,"faster","Blue","dark-left","dark-high","target-high",1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1
+15720,"faster","Blue","dark-left","dark-high","target-low",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Blue","dark-left","dark-low","target-high",1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Blue","dark-left","dark-low","target-low",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Blue","dark-right","dark-high","target-high",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Blue","dark-right","dark-high","target-low",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Blue","dark-right","dark-low","target-high",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Blue","dark-right","dark-low","target-low",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Hot","dark-left","dark-high","target-high",1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Hot","dark-left","dark-high","target-low",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Hot","dark-left","dark-low","target-high",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Hot","dark-left","dark-low","target-low",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Hot","dark-right","dark-high","target-high",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Hot","dark-right","dark-high","target-low",1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1
+15720,"faster","Hot","dark-right","dark-low","target-high",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+15720,"faster","Hot","dark-right","dark-low","target-low",1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1
