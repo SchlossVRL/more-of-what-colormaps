@@ -2,9 +2,7 @@
 
 _Alexis Soto, Melissa A. Schoenlein, Karen B. Schloss_
 
-Abstract
-
-More to come! 
+Colormap data visualizations show patterns in data by mapping variations in color to variations in magnitude. When people interpret colormap data visualizations, they have expectations about how colors map to quantities of data, and they are better at interpreting visualizations that align with those expectations. For example, they infer that darker colors map to larger quantities (dark-is-more bias) and colors that are higher on vertically oriented legends map to larger quantities (high-is-more bias). In previous studies, the notion of quantity was straightforward because more of the concept represented (conceptual magnitude) corresponded to larger numeric values (numeric magnitude). However, conflicts can arise between conceptual and numeric magnitude, such as rank orderings to quantify health—smaller numbers correspond to greater heath. Under such conflicts, do biases like the dark-is-more bias operate at the level of the conceptual or numeric magnitude? We addressed this question across five experiments, spanning data types and domains: response times of alien animals to notice scientists (Experiments 1-3), response times of microbes to eliminate pathogens (Experiment 4), and health metrics across counties (Experiment 5). Across all experiments, the high-is-more bias consistently operated at the conceptual level. The dark-is-more bias tended to operate at the level of conceptual magnitude, but numeric magnitude interfered, and overrode conceptual magnitude when conceptual magnitude was less salient. These results simultaneously (a) provide insight into factors influencing how people infer meaning from visual features, and (b) emphasize the need to consider data meaning, not just numbers, when designing visualizations aimed to facilitate visual communication.   
 
 ---
 
